@@ -14,6 +14,7 @@
 #include <sstream>
 #include <string>
 #include <iterator>
+#include <assert.h>
 
 #include "particle_filter.h"
 
@@ -154,7 +155,7 @@ void ParticleFilter::resample() {
 			beta -= weights[index]; // decrease beta
 			index = (index + 1) % weights.size(); // increase index
 		}
-		
+
 		Particle new_part = {i, particles[index].x, particles[index].y, particles[index].theta, weights[index]};
 		new_weights.push_back(weights[index]);
 		new_parts.push_back(new_part);
