@@ -58,6 +58,12 @@ void ParticleFilter::prediction(double delta_t, double std_pos[], double velocit
 		// add measurements to each particle
 		double x = particle.x + velocity / yaw_rate * (sin(particle.theta + yaw_delta) - sin(particle.theta));
 		double y = particle.y + velocity / yaw_rate * (cos(particle.theta) - cos(particle.theta + yaw_delta));
+		if(yaw_rate == 0)
+		{
+			x = particle.x;
+			y = particle.y;
+			cout << "yaw_rate is 0... " << endl;
+		}
 		double theta = particle.theta + yaw_delta;
 		// define distribution
 		normal_distribution<double> dist_x(x, std_x);
